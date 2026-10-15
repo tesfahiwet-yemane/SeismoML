@@ -1,6 +1,8 @@
 # Data & methods
 
-## Aluto volcano
+The methods are general; the data come from one case study.
+
+## Case study: Aluto volcano
 
 Aluto is a peralkaline rhyolitic caldera complex in the central Main Ethiopian Rift, south of
 Addis Ababa. It sits on the Wonji fault belt, the zone of active magmatic

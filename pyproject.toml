@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "alutoml"
+name = "seismoml"
 version = "1.0.0"
-description = "Helper code for the Aluto machine-learning seismicity workshop"
+description = "Helper code for the SeismoML machine-learning seismology workshop"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"

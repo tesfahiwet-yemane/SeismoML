@@ -19,8 +19,8 @@ from obspy import UTCDateTime
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from alutoml import data  # noqa: E402
-from alutoml.config import load_config  # noqa: E402
+from seismoml import data  # noqa: E402
+from seismoml.config import load_config  # noqa: E402
 
 
 def main() -> int:

@@ -8,12 +8,13 @@ hide:
 
 <p class="aml-meta">Department of Earth Sciences · University of Oxford · Geophysics group · 22 October 2026</p>
 
-# Machine Learning for Seismicity<br>at Aluto Volcano, Ethiopia
+# Machine Learning<br>for Seismology
 
-<p>A one-day, hands-on workshop. Starting from raw broadband waveforms of the ARGOS network,
-we build a complete earthquake catalogue with open-source deep-learning tools, and test it
-against an analyst-reviewed catalogue. The day ends with the statistics and structure of
-volcanic seismicity.</p>
+<p>A one-day, hands-on workshop. Starting from raw continuous waveforms, we build a complete
+earthquake catalogue with open-source deep-learning tools, test it against analyst picks and
+locations, and finish with the statistics and structure of the seismicity.</p>
+
+<p class="aml-meta">Case study · ARGOS network (XM), Aluto volcano, Main Ethiopian Rift · 15 November 2012</p>
 
 [Start with setup :material-rocket-launch:](setup.md){ .md-button .md-button--primary }
 [Programme :material-clock-outline:](schedule.md){ .md-button }
@@ -37,7 +38,7 @@ Deep-learning phase pickers now produce catalogues 5–10 times larger than manu
 they do it in minutes. Most public models, however, were trained on tectonic earthquakes.
 **Volcanoes are different:** shallow sources, strongly scattering media, emergent onsets and
 long-period events. This workshop asks a practical question on real data from a
-geothermal-volcanic system in the Main Ethiopian Rift:
+geothermal-volcanic system (Aluto, Main Ethiopian Rift):
 
 !!! question "Does a picker trained on volcanic earthquakes (VolPick) beat general-purpose models at Aluto, and how do we know?"
 
@@ -114,3 +115,8 @@ geothermal-volcanic system in the Main Ethiopian Rift:
     The notebooks on this site are run from start to finish on every change by GitHub
     Actions, with the pinned environment in `requirements.txt`. What you see is what you will
     get on your laptop.
+
+!!! tip "Reusing the material"
+    Everything is driven by one configuration file, `workshop.yml`. Change the network,
+    stations, day and region there to run the same pipeline on another dataset. See the
+    [editing guide](editing.md).

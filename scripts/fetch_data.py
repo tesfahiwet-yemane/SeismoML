@@ -22,7 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from alutoml.config import load_config  # noqa: E402
+from seismoml.config import load_config  # noqa: E402
 
 
 def have_data(cfg) -> bool:
@@ -42,7 +42,7 @@ def sha256(path: Path) -> str:
 def from_archive(cfg) -> bool:
     url = cfg.raw.get("archive", {}).get("url", "")
     expected = cfg.raw.get("archive", {}).get("sha256", "")
-    if not url or "OWNER/REPO" in url:
+    if not url or "tesfahiwet-yemane/SeismoML" in url:
         print("No archive URL configured; skipping.")
         return False
     with tempfile.TemporaryDirectory() as tmp:

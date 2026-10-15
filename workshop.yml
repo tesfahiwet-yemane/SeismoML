@@ -1,4 +1,4 @@
-# Central configuration for the Aluto ML-seismicity workshop.
+# Central configuration for the SeismoML workshop.
 # Every notebook and script reads this file, so changing the day or the
 # station list here propagates through the whole pipeline.
 
@@ -45,5 +45,5 @@ paths:
 
 # Release asset with the pre-downloaded day of waveforms + StationXML.
 archive:
-  url: "https://github.com/OWNER/REPO/releases/download/data-v1/aluto_xm_2012-11-15.tar.gz"
+  url: "https://github.com/tesfahiwet-yemane/SeismoML/releases/download/data-v1/aluto_xm_2012-11-15.tar.gz"
   sha256: ""

@@ -18,8 +18,8 @@ from obspy import UTCDateTime
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from alutoml import catalogue  # noqa: E402
-from alutoml.config import load_config  # noqa: E402
+from seismoml import catalogue  # noqa: E402
+from seismoml.config import load_config  # noqa: E402
 
 
 def coverage_from_fdsn(cfg, t0: UTCDateTime, t1: UTCDateTime) -> pd.DataFrame:

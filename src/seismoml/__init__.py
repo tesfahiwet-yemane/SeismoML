@@ -1,4 +1,4 @@
-"""Helper package for the Aluto machine-learning seismicity workshop."""
+"""Helper package for the SeismoML workshop (machine learning for seismology)."""
 
 from . import association, catalogue, data, magnitude, picking, plotting, stats
 from .config import Config, load_config

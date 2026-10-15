@@ -109,3 +109,80 @@ def match_events(
     if not rows:
         return pd.DataFrame(columns=columns)
     return pd.DataFrame(rows, columns=columns).sort_values("ref_id").reset_index(drop=True)
+
+
+# --------------------------------------------------------------------------
+# NonLinLoc
+# --------------------------------------------------------------------------
+def read_nlloc_hyp(path, min_weight: float = 0.05) -> tuple[dict, list[dict]]:
+    """Parse one NonLinLoc ``.hyp`` file (single event).
+
+    Returns the event (maximum-likelihood hypocentre, depth km b.s.l., origin
+    quality) and its phases. Phases with an NLLoc weight below ``min_weight``
+    (picks the locator effectively rejected) are dropped.
+    """
+    event, phases, in_phases = {}, [], False
+    with open(path) as fh:
+        for line in fh:
+            tok = line.split()
+            if not tok:
+                continue
+            key = tok[0]
+            if key == "GEOGRAPHIC":
+                yr, mo, dy, hr, mn = (int(v) for v in tok[2:7])
+                sec = float(tok[7])
+                event["time"] = pd.Timestamp(yr, mo, dy, hr, mn, tz="UTC") + pd.Timedelta(seconds=sec)
+                event["latitude"] = float(tok[9])
+                event["longitude"] = float(tok[11])
+                event["depth_km"] = float(tok[13])
+            elif key == "QUALITY":
+                q = dict(zip(tok[1::2], tok[2::2]))
+                event["rms_s"] = float(q["RMS"])
+                event["n_phases"] = int(q["Nphs"])
+                event["gap_deg"] = float(q["Gap"])
+                event["min_dist_km"] = float(q["Dist"])
+            elif key == "QML_OriginUncertainty":
+                q = dict(zip(tok[1::2], tok[2::2]))
+                event["err_h_km"] = float(q["maxHorUnc"])
+            elif key == "QML_ConfidenceEllipsoid":
+                q = dict(zip(tok[1::2], tok[2::2]))
+                event["err_max_km"] = float(q["semiMajorAxisLength"])
+            elif key == "PHASE":
+                in_phases = True
+            elif key == "END_PHASE":
+                in_phases = False
+            elif in_phases:
+                sta, pha = tok[0], tok[4]
+                date, hrmn, sec = tok[6], tok[7], float(tok[8])
+                t = pd.Timestamp(f"{date[:4]}-{date[4:6]}-{date[6:]}T{hrmn[:2]}:{hrmn[2:]}:00",
+                                 tz="UTC") + pd.Timedelta(seconds=sec)
+                gt = tok.index(">")
+                weight = float(tok[gt + 3])
+                if weight < min_weight:
+                    continue
+                phases.append({"station": sta, "phase": pha.upper()[0], "time": t,
+                               "residual_s": float(tok[gt + 2]), "weight": weight})
+    if "time" not in event:
+        raise ValueError(f"{path}: no GEOGRAPHIC line (not located?)")
+    event["magnitude"] = np.nan
+    event["source_file"] = Path(path).name
+    return event, phases
+
+
+def nlloc_to_tables(paths, min_weight: float = 0.05) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Convert many ``.hyp`` files into ``catalogue`` and ``picks`` tables (sorted by time)."""
+    parsed = sorted((read_nlloc_hyp(p, min_weight) for p in paths), key=lambda x: x[0]["time"])
+    events, picks = [], []
+    for eid, (ev, ph) in enumerate(parsed):
+        events.append({"event_id": eid, **ev})
+        picks += [{"event_id": eid, **p} for p in ph]
+    cat = pd.DataFrame(events)
+    pk = pd.DataFrame(picks, columns=["event_id", "station", "phase", "time", "residual_s", "weight"])
+    return cat, pk
+
+
+def write_table(df: pd.DataFrame, path) -> None:
+    """CSV with ISO 8601 UTC times (millisecond precision)."""
+    out = df.copy()
+    out["time"] = out["time"].dt.strftime("%Y-%m-%dT%H:%M:%S.%f").str[:-3] + "Z"
+    out.to_csv(path, index=False, float_format="%.5f")

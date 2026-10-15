@@ -1,0 +1,27 @@
+NLLOC "./NLL/loc/ALL.20121115.140001.grid0" "LOCATED" "Location completed."
+SIGNATURE "Tesfahiwet Yemane, Department of Earth Sciences, University of Oxford, 2023   obs:./NLL/obs/20121115135949610.nonlinloc   NLLoc:v7.00.00(27Oct2017)  run:12Oct2023 02h46m10"
+COMMENT "300km x 300 km x 62.5 km search grid at 0.5km spacing. #P-waves only."
+GRID  601 601 126  0 0 -2.5  0.5 0.5 0.5 PROB_DENSITY
+SEARCH OCTREE nInitial 54000 nEvaluated 400000 smallestNodeSide 0.625000/0.625000/0.525000 oct_tree_integral 4.767077e+04 scatter_volume 4.767077e+04
+HYPOCENTER  x 202.812 y 207.812 z -2.2375  OT 48.0475  ix -1 iy -1 iz -1 MAXIMUM_LIKELIHOOD
+GEOGRAPHIC  OT 2012 11 15  13 59 48.047487  Lat 8.285534 Long 39.261967 Depth -2.237500
+QUALITY  Pmax 1.07131e+06 MFmin 3.60038 MFmax 10.158 RMS 1.03233 Nphs 7 Gap 353.174 Dist 67.241 Mamp -9.90 0 Mdur -9.90 0
+VPVSRATIO  VpVsRatio -1  Npair 1  Diff 0
+STATISTICS  ExpectX 206.422 Y 205.429 Z 19.5276  CovXX 1365.69 XY -185.995 XZ 28.905 YY 1094.71 YZ -11.3015 ZZ 259.644 EllAz1  107.919 Dip1  -88.5088 Len1  30.2274 Az2  206.948 Dip2  -0.23406 Len2  59.4167 Len3  7.181720e+01
+STAT_GEOG  ExpectLat 8.264085 Long 39.294691 Depth 19.527577
+TRANSFORM  SIMPLE LatOrig 6.415221  LongOrig 37.417401  RotCW 0.000000
+QML_OriginQuality  assocPhCt 7  usedPhCt 7  assocStaCt -1  usedStaCt 6  depthPhCt -1  stdErr 1.03233  azGap 353.174  secAzGap 354.029  gtLevel -  minDist 67.241 maxDist 86.6245 medDist 76.0126
+QML_OriginUncertainty  horUnc -1  minHorUnc 47.9604  maxHorUnc 57.9545  azMaxHorUnc 116.964
+QML_ConfidenceEllipsoid  semiMajorAxisLength 71.8172  semiMinorAxisLength 30.2274  semiIntermediateAxisLength 59.4167  majorAxisPlunge 1.47266  majorAxisAzimuth 116.954  majorAxisRotation 269.766
+FOCALMECH  Hyp  8.285534 39.261967 -2.237500 Mech  0 0 0 mf  0 nObs 0
+PHASE ID Ins Cmp On Pha  FM Date     HrMn   Sec     Err  ErrMag    Coda      Amp       Per  >   TTpred    Res       Weight    StaLoc(X  Y         Z)        SDist    SAzim  RAz  RDip RQual    Tcorr 
+A13E   ?    ?    ? P      ? 20121115 1400    1.6509 GAU  1.65e-01 -1.00e+00 -1.00e+00 -1.00e+00 >   13.7679   -0.1645    1.3130  158.4197  157.3088   -1.6710   67.2410 221.32  40.0 200.0  0     0.0000
+A13E   ?    ?    ? S      ? 20121115 1400   12.1318 GAU  9.66e-02 -1.00e+00 -1.00e+00 -1.00e+00 >   24.2316   -0.1473    1.1411  158.4197  157.3088   -1.6710   67.2410 221.32  40.0 200.0  0     0.0000
+A02E   ?    ?    ? P      ? 20121115 1400    1.9987 GAU  4.68e-02 -1.00e+00 -1.00e+00 -1.00e+00 >   14.1000   -0.1488    1.3180  152.1468  160.5821   -1.6430   69.2656 227.01  40.0 200.0  0     0.0000
+A03E   ?    ?    ? S      ? 20121115 1400   18.5098 GAU  8.80e-02 -1.00e+00 -1.00e+00 -1.00e+00 >   26.8871    3.5752    0.3856  148.0332  155.1965   -1.9520   75.9553 226.15  40.0 200.0  0     0.0000
+A11E   ?    ?    ? P      ? 20121115 1400    3.7654 GAU  6.81e-02 -1.00e+00 -1.00e+00 -1.00e+00 >   15.2867    0.4312    1.2874  149.4529  153.5965   -1.9070   76.0699 224.54  40.0 200.0  0     0.0000
+A12E   ?    ?    ? P      ? 20121115 1400    6.3766 GAU  7.46e-02 -1.00e+00 -1.00e+00 -1.00e+00 >   15.6701    2.6591    0.4595  152.2158  147.9043   -1.8690   78.4157 220.18  40.0 200.0  0     0.0000
+A07E   ?    ?    ? S      ? 20121115 1400   18.4916 GAU  1.19e-01 -1.00e+00 -1.00e+00 -1.00e+00 >   29.8605    0.5836    1.0954  146.3503  142.1177   -1.5900   86.6245 220.68  40.0 200.0  0     0.0000
+END_PHASE
+END_NLLOC
+

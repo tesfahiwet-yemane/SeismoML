@@ -1,5 +1,5 @@
-# conda env create -f environment.yml && conda activate aluto-ml
-name: aluto-ml
+# conda env create -f environment.yml && conda activate seismoml
+name: seismoml
 channels:
   - conda-forge
 dependencies:

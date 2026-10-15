@@ -1,11 +1,11 @@
-site_name: Machine Learning for Seismicity at Aluto
+site_name: SeismoML · Machine Learning for Seismology
 site_description: >-
-  A one-day hands-on workshop: from raw ARGOS waveforms at Aluto volcano (Ethiopia)
-  to a machine-learning earthquake catalogue with SeisBench, VolPick and PyOcto.
+  A one-day hands-on workshop: from raw continuous waveforms to a validated
+  machine-learning earthquake catalogue with SeisBench, VolPick and PyOcto.
 site_author: Tesfahiwet Yemane
-site_url: https://OWNER.github.io/REPO/
-repo_url: https://github.com/OWNER/REPO
-repo_name: OWNER/REPO
+site_url: https://tesfahiwet-yemane.github.io/SeismoML/
+repo_url: https://github.com/tesfahiwet-yemane/SeismoML
+repo_name: tesfahiwet-yemane/SeismoML
 edit_uri: ""
 copyright: >-
   Code MIT · Text and figures CC BY 4.0 · Waveforms: ARGOS network (XM), EarthScope/IRIS DMC
@@ -63,6 +63,7 @@ nav:
       - 04 · Validation: notebooks/04_catalogue_comparison.ipynb
       - 05 · Seismicity analysis: notebooks/05_seismicity_analysis.ipynb
   - References: references.md
+  - Editing guide: editing.md
 
 plugins:
   - search
@@ -97,4 +98,4 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/OWNER/REPO
+      link: https://github.com/tesfahiwet-yemane/SeismoML

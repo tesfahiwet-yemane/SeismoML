@@ -10,6 +10,7 @@ All functions are written from the original references:
 
 from __future__ import annotations
 
+import warnings
 from dataclasses import dataclass
 
 import numpy as np
@@ -75,6 +76,8 @@ def mc_mbs(
     """
     mags = np.asarray(mags, dtype=float)
     mags = mags[np.isfinite(mags)]
+    if mags.size < 2:
+        return np.nan, pd.DataFrame(columns=["mc", "b", "sigma_b", "n", "b_avg", "stable"])
     m = _bin(mags, dm)
     trials = np.round(np.arange(m.min(), m.max() + dm / 2, dm), 6)
     rows = []
@@ -101,6 +104,11 @@ class BootstrapResult:
     b: np.ndarray
 
     def summary(self) -> pd.DataFrame:
+        with warnings.catch_warnings():  # all-NaN columns when an estimator never converged
+            warnings.simplefilter("ignore", RuntimeWarning)
+            return self._summary()
+
+    def _summary(self) -> pd.DataFrame:
         return pd.DataFrame(
             {
                 "mean": [np.nanmean(self.mc), np.nanmean(self.b)],
@@ -120,6 +128,8 @@ def bootstrap_mc_b(
     mags = np.asarray(mags, dtype=float)
     mags = mags[np.isfinite(mags)]
     mcs, bs = np.full(n_boot, np.nan), np.full(n_boot, np.nan)
+    if mags.size < 2:
+        return BootstrapResult(mc=mcs, b=bs)
     for i in range(n_boot):
         sample = rng.choice(mags, size=mags.size, replace=True)
         if method == "maxc":

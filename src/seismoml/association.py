@@ -130,7 +130,7 @@ def stations_frame(stations: pd.DataFrame, associator, datum_km: float) -> pd.Da
 def associate(
     picks: pd.DataFrame, stations: pd.DataFrame, associator, datum_km: float
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Associate a pick table (from :func:`alutoml.picking.picks_to_frame`).
+    """Associate a pick table (from :func:`seismoml.picking.picks_to_frame`).
 
     Returns
     -------

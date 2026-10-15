@@ -1,0 +1,33 @@
+NLLOC "./NLL/loc/ALL.20121115.200650.grid0" "LOCATED" "Location completed."
+SIGNATURE "Tesfahiwet Yemane, Department of Earth Sciences, University of Oxford, 2023   obs:./NLL/obs/20121115200647830.nonlinloc   NLLoc:v7.00.00(27Oct2017)  run:12Oct2023 02h46m17"
+COMMENT "300km x 300 km x 62.5 km search grid at 0.5km spacing. #P-waves only."
+GRID  601 601 126  0 0 -2.5  0.5 0.5 0.5 PROB_DENSITY
+SEARCH OCTREE nInitial 54000 nEvaluated 246960 smallestNodeSide 0.039062/0.039062/0.032813 oct_tree_integral 1.849229e+01 scatter_volume 1.849229e+01
+HYPOCENTER  x 141.426 y 149.395 z 3.94766  OT 48.1898  ix -1 iy -1 iz -1 MAXIMUM_LIKELIHOOD
+GEOGRAPHIC  OT 2012 11 15  20 06 48.189803  Lat 7.759772 Long 38.701996 Depth 3.947656
+QUALITY  Pmax 1.17877e+24 MFmin 13.3673 MFmax 14.7519 RMS 0.49143 Nphs 13 Gap 90.4752 Dist 1.51802 Mamp -9.90 0 Mdur -9.90 0
+VPVSRATIO  VpVsRatio 0.668165  Npair 3  Diff 2.3175
+STATISTICS  ExpectX 140.834 Y 149.272 Z 3.48926  CovXX 3.11199 XY -0.583045 XZ -2.40788 YY 2.20846 YZ 0.0260282 ZZ 4.68717 EllAz1  61.6205 Dip1  30.8559 Len1  2.02525 Az2  342.693 Dip2  -17.8198 Len2  2.89935 Len3  4.776926e+00
+STAT_GEOG  ExpectLat 7.758673 Long 38.696622 Depth 3.489259
+TRANSFORM  SIMPLE LatOrig 6.415221  LongOrig 37.417401  RotCW 0.000000
+QML_OriginQuality  assocPhCt 13  usedPhCt 13  assocStaCt -1  usedStaCt 10  depthPhCt -1  stdErr 0.49143  azGap 90.4752  secAzGap 151.97  gtLevel -  minDist 1.51802 maxDist 200.307 medDist 10.3428
+QML_OriginUncertainty  horUnc -1  minHorUnc 2.10287  maxHorUnc 2.79553  azMaxHorUnc 116.115
+QML_ConfidenceEllipsoid  semiMajorAxisLength 4.77693  semiMinorAxisLength 2.02525  semiIntermediateAxisLength 2.89935  majorAxisPlunge -53.3274  majorAxisAzimuth 98.2671  majorAxisRotation 260.296
+FOCALMECH  Hyp  7.759772 38.701996 3.947656 Mech  0 0 0 mf  0 nObs 0
+PHASE ID Ins Cmp On Pha  FM Date     HrMn   Sec     Err  ErrMag    Coda      Amp       Per  >   TTpred    Res       Weight    StaLoc(X  Y         Z)        SDist    SAzim  RAz  RDip RQual    Tcorr 
+A04E   ?    ?    ? S      ? 20121115 2006   50.4600 GAU  9.36e-02 -1.00e+00 -1.00e+00 -1.00e+00 >    2.2588    0.0114    1.7434  139.9607  149.7921   -1.6400    1.5180 285.18 287.3 162.0  9     0.0000
+A07E   ?    ?    ? P      ? 20121115 2006   51.1311 GAU  9.16e-02 -1.00e+00 -1.00e+00 -1.00e+00 >    2.2751    0.6662    0.6701  146.3503  142.1177   -1.5900    8.7865 145.91 148.2 115.0  9     0.0000
+A07E   ?    ?    ? S      ? 20121115 2006   52.1492 GAU  7.95e-02 -1.00e+00 -1.00e+00 -1.00e+00 >    4.0043   -0.0449    1.6528  146.3503  142.1177   -1.5900    8.7865 145.91 148.2 115.0  9     0.0000
+A03E   ?    ?    ? S      ? 20121115 2006   52.2013 GAU  8.89e-02 -1.00e+00 -1.00e+00 -1.00e+00 >    4.1372   -0.1257    1.5409  148.0332  155.1965   -1.9520    8.7932  48.71  50.3 116.0  9     0.0000
+A11E   ?    ?    ? P      ? 20121115 2006   52.1174 GAU  7.96e-02 -1.00e+00 -1.00e+00 -1.00e+00 >    2.4072    1.5204    0.0205  149.4529  153.5965   -1.9070    9.0604  62.37  64.2 113.9  9     0.0000
+A05E   ?    ?    ? P      ? 20121115 2006   50.7189 GAU  2.19e-01 -1.00e+00 -1.00e+00 -1.00e+00 >    2.4874    0.0417    1.6068  144.0689  158.8243   -1.6520    9.7932  15.66  15.6 110.7  9     0.0000
+A12E   ?    ?    ? S      ? 20121115 2006   53.4362 GAU  3.13e-01 -1.00e+00 -1.00e+00 -1.00e+00 >    4.8420    0.4044    1.1960  152.2158  147.9043   -1.8690   10.8925  97.86  98.8 108.0  9     0.0000
+A09E   ?    ?    ? P      ? 20121115 2006   50.7913 GAU  9.15e-02 -1.00e+00 -1.00e+00 -1.00e+00 >    2.9430   -0.3415    0.8968  152.7571  152.7188   -1.9550   11.8089  73.65  73.3 106.0  9     0.0000
+A09E   ?    ?    ? S      ? 20121115 2006   54.1269 GAU  7.91e-02 -1.00e+00 -1.00e+00 -1.00e+00 >    5.1797    0.7574    0.6685  152.7571  152.7188   -1.9550   11.8089  73.65  73.3 106.0  9     0.0000
+A02E   ?    ?    ? P      ? 20121115 2006   51.8563 GAU  1.19e-01 -1.00e+00 -1.00e+00 -1.00e+00 >    3.6133    0.0532    1.6508  152.1468  160.5821   -1.6430   15.4952  43.78  43.6  98.0  9     0.0000
+A02E   ?    ?    ? S      ? 20121115 2006   54.8385 GAU  6.69e-02 -1.00e+00 -1.00e+00 -1.00e+00 >    6.3595    0.2892    1.3429  152.1468  160.5821   -1.6430   15.4952  43.78  43.6  98.0  9     0.0000
+A13E   ?    ?    ? S      ? 20121115 2006   58.4384 GAU  6.67e-02 -1.00e+00 -1.00e+00 -1.00e+00 >   56.3817  -46.1331    0.0053   10.0887    7.5281   -1.6710  193.3274 222.79 222.7  38.7 10     0.0000
+A10E   ?    ?    ? S      ? 20121115 2006   53.2511 GAU  1.01e-01 -1.00e+00 -1.00e+00 -1.00e+00 >   58.0625  -53.0012    0.0053    3.0680    4.5504   -1.9450  200.3066 223.69 223.6  38.3 10     0.0000
+END_PHASE
+END_NLLOC
+

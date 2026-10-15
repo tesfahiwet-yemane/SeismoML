@@ -7,8 +7,8 @@ the notebooks on this website.
 
 ```bash
 cd ~/Documents
-git clone https://github.com/OWNER/REPO.git workshop
-cd workshop
+git clone https://github.com/tesfahiwet-yemane/SeismoML.git
+cd SeismoML
 ```
 
 ## 2 · Create the environment
@@ -17,7 +17,7 @@ cd workshop
 
     ```bash
     conda env create -f environment.yml
-    conda activate aluto-ml
+    conda activate seismoml
     ```
 
 === "venv + pip"

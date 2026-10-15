@@ -5,8 +5,8 @@ import pandas as pd
 import pytest
 from obspy import Stream, Trace, UTCDateTime
 
-from alutoml import association, catalogue, data, magnitude, picking, stats
-from alutoml.config import load_config
+from seismoml import association, catalogue, data, magnitude, picking, stats
+from seismoml.config import load_config
 
 
 @pytest.fixture(scope="module")
