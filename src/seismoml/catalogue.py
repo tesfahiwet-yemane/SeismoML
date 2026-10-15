@@ -184,5 +184,5 @@ def nlloc_to_tables(paths, min_weight: float = 0.05) -> tuple[pd.DataFrame, pd.D
 def write_table(df: pd.DataFrame, path) -> None:
     """CSV with ISO 8601 UTC times (millisecond precision)."""
     out = df.copy()
-    out["time"] = out["time"].dt.strftime("%Y-%m-%dT%H:%M:%S.%f").str[:-3] + "Z"
+    out["time"] = pd.to_datetime(out["time"], utc=True).dt.strftime("%Y-%m-%dT%H:%M:%S.%f").str[:-3] + "Z"
     out.to_csv(path, index=False, float_format="%.5f")

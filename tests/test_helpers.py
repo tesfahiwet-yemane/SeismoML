@@ -179,3 +179,13 @@ def _travel_time(tables, station, x, y, z, phase):
 def test_knee_point():
     y = np.r_[np.linspace(0, 1, 80), np.linspace(1.5, 10, 20)]
     assert 75 <= stats.knee_point(y) <= 82
+
+
+def test_empty_pick_tables_keep_datetime(tmp_path):
+    empty = picking.picks_to_frame([])
+    assert str(empty["time"].dtype).startswith("datetime64")
+    full = _picks(["2012-11-15T00:00:10"])
+    both = pd.concat([empty, full], ignore_index=True)
+    picking.save_picks(both, tmp_path / "p.csv")
+    picking.save_picks(empty, tmp_path / "e.csv")
+    assert len(picking.read_picks(tmp_path / "p.csv")) == 1

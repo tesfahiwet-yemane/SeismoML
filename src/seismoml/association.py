@@ -141,7 +141,8 @@ def associate(
         The input picks that were associated, with ``event_id`` and travel-time residual.
     """
     if picks.empty:
-        return _empty_events(), picks.assign(event_id=pd.Series(dtype=int))
+        return _empty_events(), picks.assign(event_id=pd.Series(dtype=int),
+                                             time=pd.to_datetime(picks["time"], utc=True))
     p = pd.DataFrame(
         {
             "station": picks["trace_id"],

@@ -62,8 +62,9 @@ def picks_to_frame(picks) -> pd.DataFrame:
         for p in picks
     ]
     df = pd.DataFrame(rows, columns=PICK_COLUMNS)
-    if len(df):
-        df["time"] = pd.to_datetime(df["time"], utc=True)
+    # keep a datetime dtype even when there are no picks, so empty and full tables combine
+    df["time"] = pd.to_datetime(df["time"], utc=True)
+    df["probability"] = df["probability"].astype(float)
     return df.sort_values(["time", "station"]).reset_index(drop=True)
 
 
@@ -219,7 +220,7 @@ def threshold_curve(
 
 def save_picks(df: pd.DataFrame, path) -> None:
     out = df.copy()
-    out["time"] = out["time"].dt.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+    out["time"] = pd.to_datetime(out["time"], utc=True).dt.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     out.to_csv(path, index=False)
 
 
