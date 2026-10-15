@@ -6,7 +6,7 @@ hide:
 
 <div class="aml-hero" markdown>
 
-<p class="aml-meta">Department of Earth Sciences · University of Oxford · Geophysics group · 22 October 2026</p>
+<p class="aml-meta">Department of Earth Sciences, University of Oxford, Geophysics group, 22 October 2026</p>
 
 # Machine Learning<br>for Seismology
 
