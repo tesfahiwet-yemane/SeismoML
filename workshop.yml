@@ -1,0 +1,49 @@
+# Central configuration for the Aluto ML-seismicity workshop.
+# Every notebook and script reads this file, so changing the day or the
+# station list here propagates through the whole pipeline.
+
+network: XM                 # ARGOS temporary deployment, Aluto volcano (2012-2014)
+channels: "HH?"             # 100 Hz broadband channels
+location: ""                # FDSN location code "--" (blank)
+fdsn_provider: IRIS         # EarthScope / IRIS DMC
+
+# The workshop day (UTC). Chosen inside the period when 11 stations were
+# recording simultaneously (A13E installed 9 Oct 2012, A02E removed 22 Jan 2013).
+day: "2012-11-15"
+
+stations: [A01E, A02E, A03E, A04E, A05E, A07E, A09E, A10E, A11E, A12E, A13E]
+
+# Station used for the single-station demonstrations (notebooks 01-02).
+# A10E sits in the centre of the caldera, next to the geothermal wells.
+demo_station: A10E
+
+# Study region (degrees) and depth range (km below sea level; negative = above).
+region:
+  lat: [7.60, 7.95]
+  lon: [38.60, 38.95]
+  depth_km: [-2.0, 40.0]   # top just above the highest station (1.955 km); events reach ~40 km (Yemane et al.)
+
+# Aluto summit area, used as the origin for distance plots.
+centre: {lat: 7.775, lon: 38.785}
+
+# Projected coordinate system for maps and clustering: WGS 84 / UTM zone 37N.
+utm_epsg: 32637
+
+# Velocity model used for association and location (Wilks et al., 2017, Table 1).
+velocity_model:
+  file: data/models/aluto_wilks2017.csv
+  datum_km: 2.5             # top of the model, km above sea level
+
+paths:
+  sds: data/sds
+  inventory: data/inventory/XM_aluto.xml
+  stations: data/metadata/stations_argos.csv
+  reference_catalogue: data/reference/catalogue.csv
+  reference_picks: data/reference/picks.csv
+  outputs: outputs
+  cache: data/cache
+
+# Release asset with the pre-downloaded day of waveforms + StationXML.
+archive:
+  url: "https://github.com/OWNER/REPO/releases/download/data-v1/aluto_xm_2012-11-15.tar.gz"
+  sha256: ""

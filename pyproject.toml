@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alutoml"
+version = "1.0.0"
+description = "Helper code for the Aluto machine-learning seismicity workshop"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+  "seisbench", "pyocto", "obspy", "numpy", "pandas", "scipy",
+  "matplotlib", "scikit-learn", "pyproj", "PyYAML",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

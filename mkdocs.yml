@@ -1,0 +1,100 @@
+site_name: Machine Learning for Seismicity at Aluto
+site_description: >-
+  A one-day hands-on workshop: from raw ARGOS waveforms at Aluto volcano (Ethiopia)
+  to a machine-learning earthquake catalogue with SeisBench, VolPick and PyOcto.
+site_author: Tesfahiwet Yemane
+site_url: https://OWNER.github.io/REPO/
+repo_url: https://github.com/OWNER/REPO
+repo_name: OWNER/REPO
+edit_uri: ""
+copyright: >-
+  Code MIT · Text and figures CC BY 4.0 · Waveforms: ARGOS network (XM), EarthScope/IRIS DMC
+
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  font:
+    text: Inter
+    code: JetBrains Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: deep orange
+      toggle: {icon: material/weather-night, name: Dark mode}
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: deep orange
+      toggle: {icon: material/weather-sunny, name: Light mode}
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.instant
+    - navigation.instant.progress
+    - toc.follow
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Programme: schedule.md
+  - Setup: setup.md
+  - Data & methods: data.md
+  - Notebooks:
+      - 00 · Data access: notebooks/00_data_access.ipynb
+      - 01 · Denoising: notebooks/01_denoising.ipynb
+      - 02 · Phase picking: notebooks/02_phase_picking.ipynb
+      - 03 · Association: notebooks/03_association.ipynb
+      - 04 · Validation: notebooks/04_catalogue_comparison.ipynb
+      - 05 · Seismicity analysis: notebooks/05_seismicity_analysis.ipynb
+  - References: references.md
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+      ignore_h1_titles: true
+      include_requirejs: false
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/OWNER/REPO

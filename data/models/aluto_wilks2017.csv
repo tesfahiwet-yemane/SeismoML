@@ -1,0 +1,20 @@
+# 1D velocity model for Aluto, Wilks et al. (2017), JVGR 340, Table 1.
+# depth_km is the top of each layer in km below sea level (negative = above).
+depth_km,vp,vs,unit
+-2.5,3.27,1.88,Silicic volcanics
+-1.5,4.12,2.41,Sediments and tuffs
+-1.0,4.22,2.49,Bofa basalt
+-0.2,4.50,2.50,Ignimbrite
+0.3,4.62,2.58,Crystalline basement
+2.0,4.70,2.58,
+4.0,4.95,2.77,
+6.0,5.12,2.78,
+8.0,5.85,3.36,
+10.0,5.99,3.53,
+12.0,6.09,3.61,
+14.0,6.26,3.61,
+16.0,6.31,3.61,
+20.0,6.35,3.68,
+25.0,6.70,3.80,Lower crust
+30.0,6.89,3.92,
+40.0,7.50,4.28,Upper mantle

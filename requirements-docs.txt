@@ -1,0 +1,6 @@
+# Website and CI tooling
+mkdocs==1.6.1
+mkdocs-material==9.7.7
+mkdocs-jupyter==0.26.3
+nbconvert==7.17.2
+pytest==9.1.1

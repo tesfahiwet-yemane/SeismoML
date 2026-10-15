@@ -1,0 +1,120 @@
+name: Build notebooks and website
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-docs.txt
+
+      - name: Install pinned environment (CPU-only PyTorch)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --extra-index-url https://download.pytorch.org/whl/cpu \
+            -r requirements.txt -r requirements-docs.txt -e .
+          pip list | grep -Ei "^(torch|seisbench|pyocto|obspy|numpy|pandas) "
+
+      - name: Unit tests
+        run: pytest -q
+
+      - name: Cache waveform data
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/sds
+            data/inventory
+          key: aluto-data-${{ hashFiles('workshop.yml') }}
+
+      - name: Cache SeisBench model weights
+        uses: actions/cache@v4
+        with:
+          path: ~/.seisbench
+          key: seisbench-weights-0.12.6-v1
+
+      - name: Get the workshop day (archive or FDSN)
+        run: python scripts/fetch_data.py
+
+      - name: Check the reference catalogue is present
+        run: |
+          test -s data/reference/catalogue.csv
+          test -s data/reference/picks.csv
+
+      - name: Execute all notebooks
+        run: |
+          mkdir -p docs/notebooks
+          for nb in notebooks/0*.ipynb; do
+            echo "::group::$nb"
+            jupyter nbconvert --to notebook --execute \
+              --ExecutePreprocessor.timeout=7200 \
+              --ExecutePreprocessor.kernel_name=python3 \
+              --output-dir docs/notebooks "$nb"
+            echo "::endgroup::"
+          done
+
+      - name: Fail on error outputs
+        run: |
+          python - <<'EOF'
+          import glob, nbformat, sys
+          bad = []
+          for f in sorted(glob.glob("docs/notebooks/*.ipynb")):
+              for c in nbformat.read(f, 4).cells:
+                  for o in c.get("outputs", []):
+                      if o.get("output_type") == "error":
+                          bad.append(f"{f}: {o.get('ename')}: {o.get('evalue')}")
+          print("\n".join(bad) or "No error outputs.")
+          sys.exit(1 if bad else 0)
+          EOF
+
+      - name: Build website
+        run: mkdocs build --strict
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: executed-notebooks
+          path: |
+            docs/notebooks/*.ipynb
+            outputs/
+          retention-days: 30
+
+      - uses: actions/configure-pages@v5
+        if: github.ref == 'refs/heads/main'
+
+      - uses: actions/upload-pages-artifact@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          path: site
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

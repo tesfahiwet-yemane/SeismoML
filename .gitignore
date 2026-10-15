@@ -1,0 +1,19 @@
+# data (downloaded or generated)
+data/sds/
+data/demo_sds/
+data/inventory/
+data/cache/
+outputs/
+dist/
+site/
+docs/notebooks/
+
+# python / jupyter
+__pycache__/
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+
+# OS
+.DS_Store

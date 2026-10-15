@@ -1,0 +1,78 @@
+/* Palette: basalt grey and lava orange */
+:root {
+  --md-primary-fg-color: #24313d;
+  --md-primary-fg-color--light: #3a4b5a;
+  --md-primary-fg-color--dark: #151d24;
+  --md-accent-fg-color: #e8590c;
+  --aml-lava: #e8590c;
+  --aml-ash: #8a98a6;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1b252e;
+  --md-default-bg-color: #12181e;
+}
+
+/* ---------- Hero ---------- */
+.aml-hero {
+  position: relative;
+  margin: -1.2rem -1.2rem 2rem;
+  padding: 3.2rem 2rem 2.6rem;
+  color: #fff;
+  background:
+    radial-gradient(ellipse at 85% 120%, rgba(232, 89, 12, .55), transparent 55%),
+    linear-gradient(160deg, #1b252e 0%, #24313d 55%, #3a2a22 100%);
+  border-radius: 0 0 .6rem .6rem;
+  overflow: hidden;
+}
+.aml-hero::after {               /* seismogram trace along the bottom */
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0; height: 64px;
+  background: url("../assets/trace.svg") repeat-x bottom / auto 64px;
+  opacity: .35;
+}
+.aml-hero h1 {
+  color: #fff; font-weight: 800; font-size: 2.2rem; line-height: 1.15;
+  margin: 0 0 .6rem; letter-spacing: -.02em;
+}
+.aml-hero p { font-size: .95rem; max-width: 46rem; opacity: .92; }
+.aml-hero .aml-meta { font-size: .8rem; opacity: .8; letter-spacing: .04em; text-transform: uppercase; }
+.aml-hero .md-button { color: #fff; border-color: rgba(255,255,255,.6); margin: .4rem .4rem 0 0; }
+.aml-hero .md-button--primary { background: var(--aml-lava); border-color: var(--aml-lava); }
+.aml-hero .md-button:hover { background: #fff; color: #24313d; border-color: #fff; }
+
+/* ---------- Pipeline strip ---------- */
+.aml-pipeline {
+  display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
+  margin: 1rem 0 1.6rem; font-size: .75rem; font-weight: 600;
+}
+.aml-pipeline span {
+  padding: .35rem .7rem; border-radius: 1rem;
+  background: var(--md-code-bg-color); border: 1px solid var(--md-default-fg-color--lightest);
+}
+.aml-pipeline span.arrow { background: none; border: none; color: var(--aml-lava); padding: 0; }
+
+/* ---------- Cards ---------- */
+.md-typeset .grid.cards > ul > li {
+  border-radius: .5rem;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-2px);
+  border-color: var(--aml-lava);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.md-typeset .aml-step {
+  display: inline-block; min-width: 2.1em; padding: .05em .45em; margin-right: .3em;
+  border-radius: .3em; background: var(--aml-lava); color: #fff;
+  font-family: var(--md-code-font-family); font-size: .8em; text-align: center;
+}
+
+/* ---------- Timetable ---------- */
+.md-typeset table.aml-schedule td:first-child { white-space: nowrap; font-family: var(--md-code-font-family); }
+.md-typeset .aml-break td { color: var(--aml-ash); font-style: italic; }
+
+/* ---------- Notebooks (mkdocs-jupyter) ---------- */
+.jp-RenderedImage img, .jp-OutputArea-output img { max-width: 100%; height: auto; }
+.jupyter-wrapper .jp-InputPrompt, .jupyter-wrapper .jp-OutputPrompt { display: none; }
+.jupyter-wrapper .jp-Cell { padding: .2rem 0; }

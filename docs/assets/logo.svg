@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <path d="M4 52 L22 26 Q26 21 30 24 L32 26 L34 24 Q38 21 42 26 L60 52 Z" fill="#ffffff" fill-opacity=".92"/>
+  <path d="M27 24 Q32 18 37 24" stroke="#e8590c" stroke-width="3" stroke-linecap="round"/>
+  <polyline points="4,44 14,44 17,40 20,48 23,34 26,52 29,38 32,46 35,42 38,44 60,44"
+            stroke="#e8590c" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+  <circle cx="32" cy="12" r="3" fill="#e8590c"/>
+  <circle cx="25" cy="8" r="2" fill="#ffffff" fill-opacity=".7"/>
+  <circle cx="39" cy="7" r="1.6" fill="#ffffff" fill-opacity=".5"/>
+</svg>

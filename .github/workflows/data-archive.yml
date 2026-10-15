@@ -1,0 +1,42 @@
+name: Build data archive (manual)
+
+# Downloads the workshop day from the FDSN service and attaches it to a
+# GitHub release, so participants can fetch one file instead of hammering
+# the data centre. Run once from the Actions tab.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag"
+        default: "data-v1"
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install --extra-index-url https://download.pytorch.org/whl/cpu -r requirements.txt -e .
+      - name: Download from FDSN
+        run: python scripts/download_data.py
+      - name: Pack
+        id: pack
+        run: |
+          python scripts/pack_data.py | tee pack.log
+          echo "file=$(ls dist/*.tar.gz)" >> "$GITHUB_OUTPUT"
+      - name: Publish release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "${{ inputs.tag }}" >/dev/null 2>&1 || \
+            gh release create "${{ inputs.tag }}" --title "Workshop data" \
+              --notes "ARGOS (XM) waveforms and StationXML for the workshop day. Data: EarthScope/IRIS DMC."
+          gh release upload "${{ inputs.tag }}" "${{ steps.pack.outputs.file }}" --clobber
+          cat pack.log
