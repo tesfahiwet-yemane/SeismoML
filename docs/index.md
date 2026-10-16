@@ -6,7 +6,7 @@ hide:
 
 <div class="aml-hero" markdown>
 
-<p class="aml-meta">Department of Earth Sciences, University of Oxford, Geophysics group, 22 October 2026</p>
+<p class="aml-meta">Department of Earth Sciences, University of Oxford, Geophysics group, October 2026</p>
 
 # Machine Learning<br>for Seismology
 
@@ -14,7 +14,7 @@ hide:
 earthquake catalogue with open-source deep-learning tools, test it against analyst picks and
 locations, and finish with the statistics and structure of the seismicity.</p>
 
-<p class="aml-meta">Case study · ARGOS network (XM), Aluto volcano, Main Ethiopian Rift · 15 November 2012</p>
+<p class="aml-meta">Case study, ARGOS network (XM), Aluto volcano, Main Ethiopian Rift, 15 November 2012</p>
 
 [Start with setup :material-rocket-launch:](setup.md){ .md-button .md-button--primary }
 [Programme :material-clock-outline:](schedule.md){ .md-button }
