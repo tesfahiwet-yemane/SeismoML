@@ -1,4 +1,4 @@
-site_name: SeismoML · Machine Learning for Seismology
+site_name: SeismoML, Machine Learning for Seismology
 site_description: >-
   A one-day hands-on workshop: from raw continuous waveforms to a validated
   machine-learning earthquake catalogue with SeisBench, VolPick and PyOcto.
