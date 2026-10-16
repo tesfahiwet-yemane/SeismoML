@@ -1,4 +1,4 @@
-# Programme · Thursday 22 October 2026
+# Programme, October 2026
 
 Department of Earth Sciences, University of Oxford.
 
