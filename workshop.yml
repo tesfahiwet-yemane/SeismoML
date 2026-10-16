@@ -5,7 +5,7 @@
 network: XM                 # ARGOS temporary deployment, Aluto volcano (2012-2014)
 channels: "HH?"             # 100 Hz broadband channels
 location: ""                # FDSN location code "--" (blank)
-fdsn_provider: IRIS         # EarthScope / IRIS DMC
+fdsn_provider: EARTHSCOPE         # EarthScope / IRIS DMC
 
 # The workshop day (UTC). Chosen inside the period when 11 stations were
 # recording simultaneously (A13E installed 9 Oct 2012, A02E removed 22 Jan 2013).
