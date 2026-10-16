@@ -1,4 +1,4 @@
-# SeismoML · Machine Learning for Seismology
+# SeismoML, Machine Learning for Seismology
 
 [![Build notebooks and website](https://github.com/tesfahiwet-yemane/SeismoML/actions/workflows/build.yml/badge.svg)](https://github.com/tesfahiwet-yemane/SeismoML/actions/workflows/build.yml)
 [![Website](https://img.shields.io/badge/website-online-e8590c)](https://tesfahiwet-yemane.github.io/SeismoML/)
