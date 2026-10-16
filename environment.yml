@@ -7,4 +7,5 @@ dependencies:
   - pip
   - pip:
       - -r requirements.txt
+      - -r requirements-docs.txt
       - -e .
