@@ -36,7 +36,7 @@ locations, and finish with the statistics and structure of the seismicity.</p>
 
 Deep-learning phase pickers now produce catalogues 5–10 times larger than manual ones, and
 they do it in minutes. Most public models, however, were trained on tectonic earthquakes.
-**Volcanoes are different:** shallow sources, strongly scattering media, emergent onsets and
+Volcanoes are different: shallow sources, strongly scattering media, emergent onsets and
 long-period events. This workshop asks a practical question on real data from a
 geothermal-volcanic system (Aluto, Main Ethiopian Rift):
 
