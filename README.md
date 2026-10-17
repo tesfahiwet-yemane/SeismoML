@@ -5,8 +5,8 @@
 ![Python 3.12](https://img.shields.io/badge/python-3.12-24313d)
 [![License: MIT](https://img.shields.io/badge/code-MIT-8a98a6)](LICENSE)
 
-A one-day, hands-on workshop for the Geophysics group, Department of Earth Sciences,
-University of Oxford, on **22 October 2026**.
+A one-day, hands-on workshop on machine learning and deep learning for seismic phase picking 
+and earthquake detection, **October 2026**.
 
 Starting from raw continuous waveforms, participants build a complete machine-learning
 earthquake catalogue and validate it against analyst picks and locations. The case study is
