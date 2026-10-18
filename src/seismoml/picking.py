@@ -32,6 +32,10 @@ class ModelSpec:
         cls = getattr(sbm, self.architecture)
         model = cls.from_pretrained(self.weights)
         model.eval()
+        import torch
+
+        if torch.cuda.is_available():  # e.g. a Colab GPU runtime
+            model.cuda()
         return model
 
 

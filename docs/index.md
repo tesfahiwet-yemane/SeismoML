@@ -98,7 +98,9 @@ geothermal-volcanic system (Aluto, Main Ethiopian Rift):
 
 ## What you will need
 
-* A laptop with Python 3.12, through conda or `venv` ([setup guide](setup.md)). A GPU is **not** needed.
+* **Either** just a browser and a Google account: every notebook opens in **Google Colab** with
+  one click, nothing to install.
+* **Or** a laptop with Python 3.12, through conda or `venv` ([setup guide](setup.md)). A GPU is **not** needed.
 * About 3 GB of free disk space: the environment, the model weights and one day of waveforms.
 * Familiarity with Python, NumPy/pandas and basic seismology (P/S phases, travel times).
 

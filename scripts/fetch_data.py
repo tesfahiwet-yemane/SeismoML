@@ -42,7 +42,7 @@ def sha256(path: Path) -> str:
 def from_archive(cfg) -> bool:
     url = cfg.raw.get("archive", {}).get("url", "")
     expected = cfg.raw.get("archive", {}).get("sha256", "")
-    if not url or "tesfahiwet-yemane/SeismoML" in url:
+    if not url:
         print("No archive URL configured; skipping.")
         return False
     with tempfile.TemporaryDirectory() as tmp:

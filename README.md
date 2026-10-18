@@ -23,14 +23,16 @@ general-purpose models at Aluto?**
 
 ## Notebooks
 
+Click a Colab badge to run a notebook in your browser: nothing to install.
+
 | # | Notebook | Topics |
 |---|---|---|
-| 00 | `00_data_access.ipynb` | FDSN, StationXML, instrument response, SDS archive |
-| 01 | `01_denoising.ipynb` | spectral band selection, DeepDenoiser, SNR, effect on picking |
-| 02 | `02_phase_picking.ipynb` | PhaseNet & EQTransformer, VolPick vs. general-purpose weights |
-| 03 | `03_association.ipynb` | PyOcto, Aluto 1D model, local magnitude (Keir et al., 2006) |
-| 04 | `04_catalogue_comparison.ipynb` | recall, residuals and event matching against analyst picks |
-| 05 | `05_seismicity_analysis.ipynb` | Mc (MAXC, MBS), b-value + bootstrap, DBSCAN, PCA planes |
+| 00 | [`00_data_access.ipynb`](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/00_data_access.ipynb) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/00_data_access.ipynb) | FDSN, StationXML, instrument response, SDS archive |
+| 01 | [`01_denoising.ipynb`](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/01_denoising.ipynb) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/01_denoising.ipynb) | spectral band selection, DeepDenoiser, SNR, effect on picking |
+| 02 | [`02_phase_picking.ipynb`](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/02_phase_picking.ipynb) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/02_phase_picking.ipynb) | PhaseNet & EQTransformer, VolPick vs. general-purpose weights |
+| 03 | [`03_association.ipynb`](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/03_association.ipynb) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/03_association.ipynb) | PyOcto, Aluto 1D model, local magnitude (Keir et al., 2006) |
+| 04 | [`04_catalogue_comparison.ipynb`](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/04_catalogue_comparison.ipynb) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/04_catalogue_comparison.ipynb) | recall, residuals and event matching against analyst picks |
+| 05 | [`05_seismicity_analysis.ipynb`](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/05_seismicity_analysis.ipynb) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/05_seismicity_analysis.ipynb) | Mc (MAXC, MBS), b-value + bootstrap, DBSCAN, PCA planes |
 
 ## Quick start
 

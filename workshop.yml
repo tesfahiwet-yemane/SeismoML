@@ -47,3 +47,5 @@ paths:
 archive:
   url: "https://github.com/tesfahiwet-yemane/SeismoML/releases/download/data-v1/aluto_xm_2012-11-15.tar.gz"
   sha256: ""
+  # Picks and catalogues from the latest website build (used by the Colab notebooks).
+  outputs_url: "https://github.com/tesfahiwet-yemane/SeismoML/releases/download/outputs-latest/outputs.tar.gz"

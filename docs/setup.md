@@ -1,9 +1,33 @@
 # Setup
 
+There are two ways to follow the workshop.
+
+!!! success "Option A · Google Colab: nothing to install"
+    Open any notebook with its **Open in Colab** badge (at the top of each notebook, or in
+    the table below) and run the first cell. It installs the packages and downloads the data
+    in 2–4 minutes. You only need a Google account and a browser.
+
+    * Each notebook runs on its own fresh Colab machine. Notebooks 02–05 therefore download
+      the picks and catalogues produced by the latest website build, so they work on their
+      own. To compute everything yourself, set `RECOMPUTE = True` in notebook 02.
+    * **Runtime → Change runtime type → T4 GPU** makes picking much faster (optional).
+    * Colab sessions are temporary. Use **File → Save a copy in Drive** to keep your changes.
+
+    | Notebook | |
+    |---|---|
+    | 00 · Data access | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/00_data_access.ipynb) |
+    | 01 · Denoising | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/01_denoising.ipynb) |
+    | 02 · Phase picking | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/02_phase_picking.ipynb) |
+    | 03 · Association | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/03_association.ipynb) |
+    | 04 · Validation | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/04_catalogue_comparison.ipynb) |
+    | 05 · Seismicity analysis | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/05_seismicity_analysis.ipynb) |
+
+## Option B · Your own computer
+
 The workshop uses a **pinned** Python 3.12 environment. The same versions are used to execute
 the notebooks on this website.
 
-## 1 · Get the material
+### 1 · Get the material
 
 ```bash
 cd ~/Documents
@@ -11,7 +35,7 @@ git clone https://github.com/tesfahiwet-yemane/SeismoML.git
 cd SeismoML
 ```
 
-## 2 · Create the environment
+### 2 · Create the environment
 
 === "conda / mamba (recommended)"
 
@@ -41,7 +65,7 @@ Check the installation:
 pytest -q          # fast unit tests, no network needed
 ```
 
-## 3 · Get the data
+### 3 · Get the data
 
 ```bash
 python scripts/fetch_data.py
@@ -54,7 +78,7 @@ up in `data/sds/` (SDS layout) and `data/inventory/`.
 Notebooks 04–05 also need the reference catalogue and analyst picks in `data/reference/`
 (`catalogue.csv`, `picks.csv`; format in `data/reference/README.md`).
 
-## 4 · Start Jupyter
+### 4 · Start Jupyter
 
 ```bash
 jupyter lab notebooks/

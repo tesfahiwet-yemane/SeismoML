@@ -16,6 +16,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # to publish the precomputed outputs used by Colab
     timeout-minutes: 360
     steps:
       - uses: actions/checkout@v5
@@ -96,6 +98,17 @@ jobs:
             docs/notebooks/*.ipynb
             outputs/
           retention-days: 30
+
+      - name: Publish precomputed outputs for Colab
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tar czf outputs.tar.gz outputs
+          gh release view outputs-latest >/dev/null 2>&1 || \
+            gh release create outputs-latest --title "Precomputed workshop outputs" \
+              --notes "Picks and catalogues from the latest website build. Downloaded by the Colab notebooks."
+          gh release upload outputs-latest outputs.tar.gz --clobber
 
       - uses: actions/configure-pages@v5
         if: github.ref == 'refs/heads/main'
