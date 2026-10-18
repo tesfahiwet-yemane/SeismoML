@@ -54,6 +54,11 @@ jobs:
           path: ~/.seisbench
           key: seisbench-weights-0.12.6-v1
 
+      - name: Download model weights (main repository or backup mirror, 3 attempts)
+        run: |
+          for i in 1 2 3; do python scripts/fetch_models.py && exit 0; echo "retry in 60 s"; sleep 60; done
+          exit 1
+
       - name: Get the workshop day (archive or FDSN)
         run: python scripts/fetch_data.py
 

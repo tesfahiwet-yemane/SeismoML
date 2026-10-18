@@ -94,7 +94,9 @@ and open `00_data_access.ipynb`.
     start-up script.
 
 ??? failure "Weights download fails or hangs"
-    The weights are cached in `~/.seisbench`. Behind a proxy, set `HTTPS_PROXY`. To use another
+    The notebooks switch automatically to SeisBench's backup mirror (GFZ Potsdam) when the main
+    repository is unreachable. To avoid depending on the network at all, download every model
+    in advance with `python scripts/fetch_models.py`. The weights are cached in `~/.seisbench`. Behind a proxy, set `HTTPS_PROXY`. To use another
     cache location, set `SEISBENCH_CACHE_ROOT` before starting Jupyter.
 
 ??? failure "`pyocto` fails to install"

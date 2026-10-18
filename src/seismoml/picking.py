@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import time
 from dataclasses import dataclass
 
@@ -9,6 +10,49 @@ import numpy as np
 import pandas as pd
 
 PICK_COLUMNS = ["trace_id", "station", "phase", "time", "probability"]
+
+log = logging.getLogger(__name__)
+
+
+# --------------------------------------------------------------------------
+# Robust access to the SeisBench model repository
+# --------------------------------------------------------------------------
+def _is_network_error(exc: BaseException) -> bool:
+    import requests
+
+    return isinstance(exc, (requests.exceptions.RequestException, OSError, TimeoutError))
+
+
+def _with_backup(fn):
+    """Run ``fn``; if the main SeisBench repository is unreachable, switch to the GFZ mirror and retry."""
+    try:
+        return fn()
+    except Exception as exc:  # noqa: BLE001
+        if not _is_network_error(exc):
+            raise
+        import seisbench
+
+        print("SeisBench main repository unreachable; switching to the backup mirror.")
+        seisbench.use_backup_repository()
+        return fn()
+
+
+def available_weights(architecture: str) -> list[str]:
+    """Pretrained weights for a SeisBench model, robust to repository outages.
+
+    Tries the main repository, then the backup mirror, then lists the weights
+    already in the local cache (``~/.seisbench``).
+    """
+    import seisbench.models as sbm
+
+    cls = getattr(sbm, architecture)
+    try:
+        return _with_backup(cls.list_pretrained)
+    except Exception as exc:  # noqa: BLE001
+        if not _is_network_error(exc):
+            raise
+        print(f"No model repository reachable; listing cached {architecture} weights only.")
+        return cls.list_pretrained(remote=False)
 
 
 @dataclass(frozen=True)
@@ -30,7 +74,7 @@ class ModelSpec:
         import seisbench.models as sbm
 
         cls = getattr(sbm, self.architecture)
-        model = cls.from_pretrained(self.weights)
+        model = _with_backup(lambda: cls.from_pretrained(self.weights))
         model.eval()
         import torch
 

@@ -21,9 +21,9 @@ Department of Earth Sciences, University of Oxford.
 
 !!! tip "Before the day"
     Please complete the [setup](setup.md) **before** the workshop. Run
-    `python scripts/fetch_data.py` and open notebook 00 to check that everything works. The
-    model weights (a few MB per model) download the first time a notebook uses them, so run
-    notebooks 01 and 02 once beforehand if you can.
+    `python scripts/fetch_data.py` and `python scripts/fetch_models.py` (data and model
+    weights, so you do not depend on the venue Wi-Fi), then open notebook 00 to check that
+    everything works.
 
 !!! note "Long computations"
     Picking 24 h × 11 stations with six models takes 10–30 minutes on a laptop CPU. Notebook 02
