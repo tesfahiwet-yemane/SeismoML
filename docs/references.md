@@ -5,8 +5,8 @@
 * Yemane, T., Hudson, T. S., Kendall, J.-M., Blundy, J., Tadesse, A. Z., Hammond, J. O. S.,
   Ayele, A., Ogubazghi, G., & Lapins, S. Interconnectivity of magmatic and hydrothermal
   systems of Aluto volcano in the Main Ethiopian Rift inferred from seismicity.
-  *ESS Open Archive*.
-  <https://essopenarchive.org/users/833241/articles/1226258-interconnectivity-of-magmatic-and-hydrothermal-systems-of-aluto-volcano-in-the-main-ethiopian-rift-inferred-from-seismicity>
+  *JGR: Solid Earth*.
+  <https://doi.org/10.1029/2024JB031053>
 * Wilks, M., Kendall, J.-M., Nowacki, A., Biggs, J., Wookey, J., Birhanu, Y., Ayele, A., &
   Bedada, T. (2017). Seismicity associated with magmatism, faulting and hydrothermal
   circulation at Aluto Volcano, Main Ethiopian Rift. *Journal of Volcanology and Geothermal
