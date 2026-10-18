@@ -93,6 +93,9 @@ jobs:
           sys.exit(1 if bad else 0)
           EOF
 
+      - name: Draw slide figures from the real data
+        run: python scripts/make_slide_figures.py || echo "::warning::Some slide figures could not be drawn"
+
       - name: Build website
         run: mkdocs build --strict
 

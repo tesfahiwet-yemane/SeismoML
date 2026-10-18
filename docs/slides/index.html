@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From STA/LTA to transformers · SeismoML</title>
+<!--
+  HOW TO EDIT
+  * The slides are the Markdown text between <textarea data-template> and </textarea> below.
+  * A line containing only "---" (with blank lines around it) starts a new slide.
+  * Lines after "Note:" are speaker notes (press S while presenting).
+  * Figures in figures/ are drawn from the real data by:  python scripts/make_slide_figures.py
+  KEYS: arrows = navigate, F = full screen, S = speaker notes, O = overview,
+        Alt+click = zoom.  Add ?print-pdf to the URL and print to save a PDF.
+-->
+<link rel="stylesheet" href="reveal/reset.css">
+<link rel="stylesheet" href="reveal/reveal.css">
+<link rel="stylesheet" href="reveal/plugin/highlight/monokai.css">
+<style>
+  :root {
+    --basalt: #24313d; --basalt-2: #3a4b5a; --lava: #e8590c; --ash: #8a98a6;
+    --paper: #fbfaf8; --ink: #1d252c;
+    --r-background-color: var(--paper);
+    --r-main-font: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --r-main-font-size: 30px;
+    --r-main-color: var(--ink);
+    --r-heading-font: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --r-heading-color: var(--basalt);
+    --r-heading-font-weight: 750;
+    --r-heading-text-transform: none;
+    --r-heading-letter-spacing: -0.02em;
+    --r-link-color: var(--lava);
+    --r-link-color-hover: #b8430a;
+    --r-code-font: "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+  body { background: var(--paper); }
+  .reveal { font-family: var(--r-main-font); font-size: var(--r-main-font-size); color: var(--ink); }
+  .reveal h1, .reveal h2, .reveal h3 { font-family: var(--r-heading-font); color: var(--r-heading-color);
+    font-weight: var(--r-heading-font-weight); letter-spacing: var(--r-heading-letter-spacing);
+    text-transform: none; line-height: 1.12; margin: 0 0 .45em; }
+  .reveal h1 { font-size: 2.1em; } .reveal h2 { font-size: 1.45em; } .reveal h3 { font-size: 1.05em; }
+  .reveal a { color: var(--lava); text-decoration: none; border-bottom: 1px solid rgba(232,89,12,.35); }
+  .reveal p, .reveal li { line-height: 1.38; }
+  .reveal ul { margin-left: .9em; } .reveal li { margin: .22em 0; }
+  .reveal li::marker { color: var(--lava); }
+  .reveal strong, .reveal b { color: var(--basalt); font-weight: 700; }
+  .reveal em, .reveal i { font-style: italic; }
+  .reveal p { margin: .35em 0; }
+  .title-slide strong { color: #fff; }
+  .reveal code { font-family: var(--r-code-font); font-size: .88em; background: #eef0f2; padding: .05em .3em; border-radius: 4px; }
+  .reveal pre { width: 100%; box-shadow: none; font-size: .8em; margin: .4em 0; }
+  .reveal pre code { border-radius: 8px; padding: .9em 1.1em; max-height: 560px; background: #1d252c; }
+  .reveal .slides section { text-align: left; }
+  .reveal .slides section.center { text-align: center; }
+  .reveal img { border-radius: 6px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; align-items: start; }
+  .cols.wide-left { grid-template-columns: 1.35fr 1fr; }
+  .cols.wide-right { grid-template-columns: 1fr 1.35fr; }
+  .small { font-size: .72em; } .tiny { font-size: .52em; color: #5b6772; line-height: 1.35; }
+  .muted { color: #5b6772; }
+  .kicker { font-size: .55em; letter-spacing: .14em; text-transform: uppercase; color: var(--lava); font-weight: 700; margin-bottom: .3em; }
+  .refs { position: absolute; bottom: -1.6em; left: 0; right: 0; font-size: .44em; color: #6b7782; border-top: 1px solid #e3e6e9; padding-top: .4em; }
+  .refs a { border-bottom: none; }
+  .card { background: #fff; border: 1px solid #e3e6e9; border-radius: 10px; padding: .55em .75em; }
+  .card h3 { margin-bottom: .25em; }
+  .pill { display: inline-block; padding: .12em .6em; border-radius: 1em; background: #fff; border: 1px solid #d9dde1; font-size: .62em; font-weight: 600; margin: .12em .1em; }
+  .pill.on { background: var(--lava); border-color: var(--lava); color: #fff; }
+  .arrow { color: var(--lava); font-weight: 700; margin: 0 .1em; font-size: .7em; }
+  .good { color: #2b8a3e; font-weight: 700; } .bad { color: #c92a2a; font-weight: 700; }
+  .formula { font-family: var(--r-code-font); background: #fff; border: 1px solid #e3e6e9; border-radius: 8px; padding: .45em .7em; font-size: .78em; display: inline-block; }
+  table { font-size: .74em; border-collapse: collapse; width: 100%; }
+  .reveal table th, .reveal table td { border-bottom: 1px solid #e3e6e9; padding: .35em .5em; text-align: left; }
+  .reveal table th { color: var(--basalt); }
+  .title-slide h1, .title-slide p, .title-slide .kicker { color: #fff !important; }
+  .title-slide .muted { color: #d7dde2 !important; }
+  .fig { width: 100%; background: #fff; border: 1px solid #e3e6e9; }
+  .fig-missing { padding: 2em; text-align: center; color: #6b7782; background: #fff; border: 1px dashed #c9cfd4; border-radius: 8px; font-size: .6em; }
+  .net { display: flex; align-items: center; gap: .35em; flex-wrap: wrap; margin: .3em 0 .5em; }
+  .box { border: 2px solid var(--basalt-2); border-radius: 8px; padding: .25em .55em; font-size: .6em; font-weight: 600; background: #fff; }
+  .box.hot { border-color: var(--lava); color: var(--lava); }
+  .progress { color: var(--lava); }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+<section data-markdown data-separator="^\r?\n---\r?\n$" data-separator-notes="^Note:">
+<textarea data-template>
+
+<!-- .slide: class="title-slide" data-background-gradient="radial-gradient(ellipse at 85% 115%, rgba(232,89,12,.6), transparent 55%), linear-gradient(160deg, #1b252e 0%, #24313d 55%, #3a2a22 100%)" -->
+<p class="kicker">SeismoML · Oxford Geophysics · 22 October 2026</p>
+
+# From STA/LTA<br>to transformers
+
+<p style="font-size:.9em">Machine learning for earthquake detection and phase picking,<br>and what changes at volcanoes</p>
+
+<p class="muted" style="font-size:.6em;margin-top:2em">Tesfahiwet Yemane · Department of Earth Sciences, University of Oxford<br>
+Slides and notebooks: <a href="https://tesfahiwet-yemane.github.io/SeismoML/" style="color:#ffb38a">tesfahiwet-yemane.github.io/SeismoML</a></p>
+
+Note:
+Welcome. Fifteen minutes of background, then hands-on for the rest of the day.
+Goal: everyone knows what the models do, what they were trained on, and how to check them.
+
+---
+
+<p class="kicker">1 · The problem</p>
+
+## A catalogue is only as good as its picks
+
+<div class="cols wide-right">
+<div>
+
+- **Pick**: arrival time of a P or S wave at one station
+- Picks → **locations** → magnitudes → *physics* (faults, fluids, magma)
+- Manual picking: minutes per event, hours per day of data
+- Aluto 2012–14: **2,393 events** located by hand (Yemane et al.)
+- Small events are skipped: the catalogue is **incomplete** below some magnitude
+
+</div>
+<div>
+<img class="fig" src="figures/record_section.png" alt="Record section" onerror="this.outerHTML='<div class=fig-missing>Real-data figure appears after<br><code>python scripts/make_slide_figures.py</code></div>'">
+<p class="tiny">Analyst P (blue) and S (red) picks on the ARGOS network, 15 Nov 2012.</p>
+</div>
+</div>
+
+Note:
+This is one of the four reference events of our day, picked by hand.
+Ask: how long would a year of this take? That is the motivation for automation.
+
+---
+
+<p class="kicker">2 · Traditional pickers</p>
+
+## STA/LTA: watch the energy jump
+
+<div class="cols wide-right">
+<div>
+
+<span class="formula">R(t) = STA(t) / LTA(t)</span>
+
+- Short-term average (≈0.5 s) over long-term average (≈10 s) of signal energy
+- Trigger when *R* > on-threshold; reset when *R* < off-threshold
+- Coincidence over several stations → **detection**
+- <span class="good">Fast, transparent, no training</span>
+- <span class="bad">Onset time is imprecise; S hard; noise bursts trigger too</span>
+
+</div>
+<div>
+<img class="fig" src="figures/stalta.png" alt="STA/LTA" onerror="this.outerHTML='<div class=fig-missing>Real-data figure appears after<br><code>python scripts/make_slide_figures.py</code></div>'">
+</div>
+</div>
+
+<div class="refs"><a href="https://doi.org/10.1785/BSSA0680051521">Allen (1978) BSSA</a> ·
+<a href="https://doi.org/10.1785/BSSA0880010095">Withers et al. (1998) BSSA</a> ·
+<a href="https://docs.obspy.org/tutorial/code_snippets/trigger_tutorial.html">ObsPy trigger tutorial</a></div>
+
+Note:
+Recursive STA/LTA as in notebook 01. Thresholds are tuned per station and per noise condition.
+The strongest trigger of our day at A10E is not an earthquake: we see this in notebook 01.
+
+---
+
+<p class="kicker">2 · Traditional pickers</p>
+
+## Refining the onset, and detecting by similarity
+
+<div class="cols">
+<div class="card">
+
+### Onset refinement
+
+- **AIC picker**: split the window where two "noise + signal" models fit best
+- **Kurtosis / higher-order statistics**: impulsive onsets break Gaussianity
+- Used after an STA/LTA trigger for a precise time
+
+</div>
+<div class="card">
+
+### Template matching
+
+- Cross-correlate known events with continuous data
+- Finds events **10× smaller** than STA/LTA
+- <span class="bad">Only finds events similar to the templates</span>
+
+</div>
+</div>
+
+<p class="small" style="margin-top:.6em"><strong>Common limits:</strong> per-site tuning, emergent onsets (volcanic LP events), S phases in P coda, overlapping events.</p>
+
+<div class="refs">Maeda (1985) Zisin ·
+<a href="https://doi.org/10.1785/0120120347">Baillard et al. (2014) BSSA</a> ·
+<a href="https://doi.org/10.1111/j.1365-246X.2006.02865.x">Gibbons & Ringdal (2006) GJI</a></div>
+
+Note:
+These are still widely used, and they are the baseline any ML method has to beat.
+Template matching is powerful but needs templates and is limited to repeating sources.
+
+---
+
+<p class="kicker">3 · Deep learning</p>
+
+## Picking as a learned probability
+
+<div class="cols">
+<div>
+
+<div class="net"><span class="box">3-comp. window</span><span class="arrow">➜</span><span class="box hot">neural network</span><span class="arrow">➜</span><span class="box">P(t), S(t), noise(t)</span></div>
+
+- **PhaseNet**: U-Net, 30 s windows, probability per sample
+- **EQTransformer**: CNN + LSTM + **attention**, 60 s, detection + P + S
+- Picks = peaks above a **threshold** (a choice, not a fact)
+- Trained on **millions** of analyst picks (STEAD, INSTANCE, …)
+
+</div>
+<div>
+<img class="fig" src="figures/probabilities.png" alt="Model probabilities" onerror="this.outerHTML='<div class=fig-missing>Real-data figure appears after<br><code>python scripts/make_slide_figures.py</code></div>'">
+<p class="tiny">Three models on the same Aluto record. Dashed: analyst picks.</p>
+</div>
+</div>
+
+<div class="refs"><a href="https://doi.org/10.1093/gji/ggy423">Zhu & Beroza (2019) GJI</a> ·
+<a href="https://doi.org/10.1038/s41467-020-17591-w">Mousavi et al. (2020) Nat. Commun.</a> ·
+<a href="https://doi.org/10.1785/0120180080">Ross et al. (2018) BSSA</a> ·
+<a href="https://doi.org/10.1109/ACCESS.2019.2947848">STEAD</a> ·
+<a href="https://doi.org/10.5194/essd-13-5509-2021">INSTANCE</a></div>
+
+Note:
+PhaseNet treats picking like image segmentation. EQTransformer adds attention, which helps with long context.
+Key point: the output is a probability curve; the threshold and post-processing are ours.
+
+---
+
+<p class="kicker">3 · Deep learning</p>
+
+## A model knows its training data
+
+- **Domain shift**: different noise, instruments, sampling, source types ⇒ worse picks
+- **Calibration** differs: 0.3 for one model ≠ 0.3 for another
+- More picks ≠ better: false picks feed false events
+- Benchmarks show **no single best model**: performance depends on the data set used for training *and* testing
+
+<div class="card small" style="margin-top:.6em">
+
+**Rule for today:** never trust a picker on new data until you have compared it with **analyst picks** on that data. Notebook 04 does exactly that for Aluto.
+
+</div>
+
+<div class="refs"><a href="https://doi.org/10.1029/2021JB023499">Münchmeyer et al. (2022) "Which picker fits my data?" JGR</a> ·
+<a href="https://doi.org/10.1126/science.abm4470">Mousavi & Beroza (2022) Science</a></div>
+
+Note:
+This is the most important slide for an expert audience. The benchmark paper trained every model on every dataset and tested across them.
+
+---
+
+<p class="kicker">4 · SeisBench</p>
+
+## One interface, many models and data sets
+
+<div class="cols wide-left">
+<div>
+
+```python [|1|3-4|6-7|9-10]
+import seisbench.models as sbm
+
+sbm.PhaseNet.list_pretrained()
+model = sbm.PhaseNet.from_pretrained("volpick")
+
+# continuous probability curves (ObsPy Stream in and out)
+annotations = model.annotate(stream)
+
+# discrete picks above a threshold
+picks = model.classify(stream, P_threshold=0.2).picks
+```
+
+</div>
+<div class="small">
+
+- PyTorch models: PhaseNet, EQTransformer, GPD, DeepDenoiser, …
+- **Pretrained weights** per training set: `original`, `stead`, `instance`, `volpick`, …
+- Benchmark **data sets** in one format, for training your own model
+- Open source, from GFZ Potsdam and collaborators
+
+<p><a href="https://seisbench.readthedocs.io">seisbench.readthedocs.io</a><br><a href="https://github.com/seisbench/seisbench">github.com/seisbench/seisbench</a></p>
+
+</div>
+</div>
+
+<div class="refs"><a href="https://doi.org/10.1785/0220210324">Woollam et al. (2022) SRL</a> ·
+<a href="https://doi.org/10.1029/2021JB023499">Münchmeyer et al. (2022) JGR</a></div>
+
+Note:
+Swapping models is one string. That makes fair comparisons easy, which we do in notebook 02.
+Same weights name can exist for several architectures (e.g. volpick for PhaseNet and EQTransformer).
+
+---
+
+<p class="kicker">5 · Volcanoes</p>
+
+## Why volcanic seismicity is different, and VolPick
+
+<div class="cols">
+<div>
+
+- **VT** events: brittle failure, like tectonic quakes but shallow and small
+- **LP** events: fluid-driven, **0.5–5 Hz**, emergent, weak S
+- Strong scattering in altered rock and hydrothermal systems
+- General-purpose pickers **degrade as frequency content drops**
+
+</div>
+<div class="card">
+
+### VolPick
+
+- PhaseNet and EQTransformer retrained on **VCSEIS**: VT, LP and regular events plus noise from volcanic regions
+- Better on data never used in training (Cascadia volcanoes, Nankai low-frequency earthquakes)
+- `PhaseNet.from_pretrained("volpick")`
+- <a href="https://github.com/zhong-yy/volpick">github.com/zhong-yy/volpick</a>
+
+</div>
+</div>
+
+<div class="refs"><a href="https://doi.org/10.1029/2024GL108438">Zhong & Tan (2024) GRL</a> ·
+<a href="https://doi.org/10.1038/380309a0">Chouet (1996) Nature</a></div>
+
+Note:
+Aluto is another out-of-sample test: geothermal, rift, mostly shallow VT-like events.
+Our question for today: does VolPick beat the general-purpose weights here?
+
+---
+
+<p class="kicker">6 · After picking</p>
+
+## From picks to a catalogue
+
+<div class="net" style="font-size:1.25em">
+<span class="box">picks</span><span class="arrow">➜</span>
+<span class="box hot">association</span><span class="arrow">➜</span>
+<span class="box">location</span><span class="arrow">➜</span>
+<span class="box">magnitude</span><span class="arrow">➜</span>
+<span class="box">relocation</span>
+</div>
+
+<table>
+<tr><th>Step</th><th>Today</th><th>Alternatives</th></tr>
+<tr><td>Association</td><td><a href="https://doi.org/10.26443/seismica.v3i1.1130">PyOcto</a> (octree, fast)</td><td><a href="https://doi.org/10.1029/2021JB023249">GaMMA</a>, <a href="https://doi.org/10.1785/0220190052">REAL</a></td></tr>
+<tr><td>Location</td><td>PyOcto, Aluto 1D model (Wilks et al., 2017)</td><td>NonLinLoc, as in the reference catalogue</td></tr>
+<tr><td>Magnitude</td><td>ML, Ethiopian Rift scale (Keir et al., 2006)</td><td>Mw from spectra</td></tr>
+<tr><td>Relocation</td><td>— (follow-up)</td><td><a href="https://doi.org/10.1785/0120000006">hypoDD</a>, GrowClust</td></tr>
+</table>
+
+<p class="small" style="margin-top:.5em">Then: completeness, b-value, clustering and fault planes (notebook 05).</p>
+
+Note:
+Association is where most false picks are filtered out: a pick only survives if a source in space and time explains it together with others.
+
+---
+
+<p class="kicker">7 · Today</p>
+
+## The plan, and the question
+
+<div class="cols wide-left">
+<div>
+
+| | Notebook | |
+|---|---|---|
+| 00 | Data access: FDSN, StationXML, SDS | 10:15 |
+| 01 | Denoising: band-pass vs DeepDenoiser | 11:00 |
+| 02 | Picking: VolPick vs general-purpose | 11:40 |
+| 03 | Association, location, ML | 13:45 |
+| 04 | Validation against analyst picks | 14:45 |
+| 05 | Mc, b-value, clusters, planes | 15:45 |
+
+</div>
+<div>
+
+<div class="card small">
+<p><strong>Data:</strong> ARGOS network (XM), Aluto volcano, 15 Nov 2012, 11 stations, 100 Hz</p>
+<p><strong>Question:</strong> does a picker trained on volcanic data beat general-purpose models at Aluto, <em>and how do we know?</em></p>
+</div>
+
+<p class="small" style="margin-top:.7em">
+<a href="https://tesfahiwet-yemane.github.io/SeismoML/">Website & executed notebooks</a><br>
+<a href="https://github.com/tesfahiwet-yemane/SeismoML">GitHub repository</a><br>
+<a href="https://tesfahiwet-yemane.github.io/SeismoML/setup/">Setup, incl. Google Colab</a>
+</p>
+</div>
+</div>
+
+Note:
+No installation? Open any notebook in Colab from the setup page.
+Start with notebook 00 now.
+
+</textarea>
+</section>
+</div></div>
+
+<script src="reveal/reveal.js"></script>
+<script src="reveal/plugin/markdown/markdown.js"></script>
+<script src="reveal/plugin/highlight/highlight.js"></script>
+<script src="reveal/plugin/notes/notes.js"></script>
+<script src="reveal/plugin/zoom/zoom.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: "c/t",
+    width: 1280,
+    height: 760,
+    margin: 0.06,
+    transition: "fade",
+    plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom],
+  });
+</script>
+</body>
+</html>

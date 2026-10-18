@@ -19,6 +19,7 @@ locations, and finish with the statistics and structure of the seismicity.</p>
 [Start with setup :material-rocket-launch:](setup.md){ .md-button .md-button--primary }
 [Programme :material-clock-outline:](schedule.md){ .md-button }
 [Notebooks :material-notebook-outline:](notebooks/00_data_access.ipynb){ .md-button }
+[Slides :material-presentation:](slides/index.html){ .md-button }
 
 </div>
 

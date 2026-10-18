@@ -5,7 +5,7 @@ Department of Earth Sciences, University of Oxford.
 | Time | Session | Notebook |
 |---|---|---|
 | 09:30 | Welcome, environment check, coffee | `setup` |
-| 09:45 | **Talk:** from STA/LTA to transformers. How ML pickers work and fail | |
+| 09:45 | **Talk:** from STA/LTA to transformers. How ML pickers work and fail ([slides](slides/index.html)) | |
 | 10:15 | Getting ARGOS data: FDSN, StationXML, SDS | 00 |
 | 10:45 | *Coffee break* | |
 | 11:00 | Denoising: band-pass vs. DeepDenoiser | 01 |

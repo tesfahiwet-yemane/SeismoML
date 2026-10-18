@@ -16,6 +16,8 @@ online.
 | Website menu and title | `mkdocs.yml` | `nav:` and `site_name:` |
 | Colours, fonts, layout | `docs/stylesheets/extra.css` | the palette is at the top |
 | Logo | `docs/assets/logo.svg` | any SVG |
+| Slides | `docs/slides/index.html` | Markdown inside the file; `---` starts a new slide, `Note:` adds speaker notes |
+| Slide figures | `scripts/make_slide_figures.py` | redrawn from the real data on every build |
 | Station table | `data/metadata/stations_argos.csv` | one row per deployment epoch |
 | Velocity model | `data/models/aluto_wilks2017.csv` | layer tops in km b.s.l.; set the file in `workshop.yml` |
 | Reference events and picks | `data/reference/nlloc/*.hyp` | then `python scripts/nlloc_to_csv.py` |
