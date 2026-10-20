@@ -69,6 +69,8 @@ to preview your changes.
 Waveforms: ARGOS network (XM, 2012–2014), archived at the EarthScope/IRIS DMC. Please cite the
 network DOI and the papers listed on the website when using these data.
 
+The ARGOS Project. (2012). ARGOS - Alutu and Regional Geophysical Observation Study [Data set]. International Federation of Digital Seismograph Networks. <https://doi.org/10.7914/SN/XM_2012>
+
 ## Licence
 
 Code: MIT. Text and figures: CC BY 4.0.
