@@ -93,7 +93,7 @@
 
 <p style="font-size:.9em">Machine learning for earthquake detection and phase picking,<br>and what changes at volcanoes</p>
 
-<p class="muted" style="font-size:.6em;margin-top:2em">Tesfahiwet Yemane, Department of Earth Sciences, University of Oxford<br>
+<p class="muted" style="font-size:.6em;margin-top:2em">Tesfahiwet Yemane, Sacha Lapins, Rita Kounoudis, Department of Earth Sciences, University of Oxford<br>
 Slides and notebooks: <a href="https://tesfahiwet-yemane.github.io/SeismoML/" style="color:#ffb38a">tesfahiwet-yemane.github.io/SeismoML</a></p>
 
 Note:
@@ -112,7 +112,7 @@ Goal: everyone knows what the models do, what they were trained on, and how to c
 - **Pick**: arrival time of a P or S wave at one station
 - Picks → **locations** → magnitudes → *tomography* (faults, fluids, magma)
 - Manual picking: minutes per event, hours per day of data
-- Aluto 2012–14: **2,142 events** located by hand (Wilks et al., 2017) (2,393 QM)
+- Aluto 2012–14: **2,142 events** located by hand (Wilks et al., 2017) (2,393 QuakeMigrate)
 - Small events maybe skipped: the catalogue could be **incomplete** below some magnitude
 
 </div>
@@ -240,7 +240,7 @@ Key point: the output is a probability curve; the threshold and post-processing 
 
 <div class="card small" style="margin-top:.6em">
 
-**Rule for today:** never trust a picker on new data until you have compared it with **analyst picks** on that data. Notebook 04 does exactly that for Aluto.
+**Note:** It is good practice to compare a picker on new data with **analyst picks** on that data (at least for few events). Notebook 04 does exactly that for Aluto.
 
 </div>
 
@@ -370,6 +370,7 @@ Association is where most false picks are filtered out: a pick only survives if 
 | 03 | Association, location, ML | 13:45 |
 | 04 | Validation against analyst picks | 14:45 |
 | 05 | Mc, b-value, clusters, planes | 15:45 |
+| 06 | Quick start (short tutorial on all the steps) | 1-2 hours |
 
 </div>
 <div>
