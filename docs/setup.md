@@ -21,6 +21,7 @@ There are two ways to follow the workshop.
     | 03 · Association | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/03_association.ipynb) |
     | 04 · Validation | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/04_catalogue_comparison.ipynb) |
     | 05 · Seismicity analysis | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/05_seismicity_analysis.ipynb) |
+    | 06 · Quick start (1–2 h) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tesfahiwet-yemane/SeismoML/blob/main/notebooks/06_quickstart_catalogue.ipynb) |
 
 ## Option B · Your own computer
 

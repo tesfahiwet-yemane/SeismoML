@@ -19,6 +19,11 @@ Department of Earth Sciences, University of Oxford.
 | 17:15 | Close | |
 { .aml-schedule }
 
+!!! info "Shorter format"
+    For a 1–2 hour lecture or tutorial, use
+    [06 · Quick start](notebooks/06_quickstart_catalogue.ipynb): download, picking, association
+    and NonLinLoc export in one notebook.
+
 !!! tip "Before the day"
     Please complete the [setup](setup.md) **before** the workshop. Run
     `python scripts/fetch_data.py` and `python scripts/fetch_models.py` (data and model

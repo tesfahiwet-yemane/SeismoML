@@ -189,3 +189,26 @@ def test_empty_pick_tables_keep_datetime(tmp_path):
     picking.save_picks(both, tmp_path / "p.csv")
     picking.save_picks(empty, tmp_path / "e.csv")
     assert len(picking.read_picks(tmp_path / "p.csv")) == 1
+
+
+def test_nonlinloc_export(cfg, tmp_path):
+    from seismoml import nonlinloc
+
+    ev = pd.DataFrame({"event_id": [0], "time": pd.to_datetime(["2012-11-15T03:00:00"], utc=True)})
+    asg = _picks(["2012-11-15T03:00:01.2345", "2012-11-15T03:00:02.5"], station="A10E")
+    asg["phase"] = ["P", "S"]
+    asg["probability"] = [1.0, 0.0]
+    asg["event_id"] = 0
+    st = data.active_stations(data.station_table(cfg.path("stations")), cfg.day)
+    out = nonlinloc.write_project(tmp_path, ev, asg, st, cfg.velocity_model_file, cfg.centre)
+    obs = sorted((tmp_path / "obs").glob("*.nonlinloc"))
+    assert out["n_obs"] == 1 and obs[0].name == "20121115030001234.nonlinloc"
+    p_line, s_line = obs[0].read_text().splitlines()
+    f = p_line.split()
+    assert f[0] == "A10E" and f[4] == "P" and f[6] == "20121115" and f[7] == "0300"
+    assert float(f[8]) == pytest.approx(1.2345) and float(f[10]) == pytest.approx(0.03)
+    assert float(s_line.split()[10]) == pytest.approx(0.20)
+    assert len((tmp_path / "stations.txt").read_text().splitlines()) == len(st)
+    ctrl = (tmp_path / "nlloc.in").read_text()
+    for key in ("TRANS SIMPLE", "VGGRID", "GTFILES", "LOCFILES", "LOCGRID", "INCLUDE model.txt"):
+        assert key in ctrl

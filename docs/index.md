@@ -97,6 +97,12 @@ geothermal-volcanic system (Aluto, Main Ethiopian Rift):
 
 </div>
 
+!!! tip "Teaching a 1–2 hour class?"
+    [**06 · Quick start**](notebooks/06_quickstart_catalogue.ipynb) runs the essential pipeline in
+    one notebook: download → phase picking → association and location → catalogue export as a
+    ready-to-run **NonLinLoc** project for relocation. It uses the same data, settings and helper
+    code as the full-day notebooks.
+
 ## What you will need
 
 * **Either** just a browser and a Google account: every notebook opens in **Google Colab** with

@@ -26,6 +26,7 @@ COLAB_FLAGS = {
     "03": "--data --outputs",
     "04": "--data --outputs",
     "05": "--data --outputs",
+    "06": "",   # the quick-start notebook downloads its own data
 }
 
 SETUP = '''# Running on Google Colab? This cell installs everything and gets the data (2-4 minutes).
@@ -59,8 +60,7 @@ def process(path: Path) -> None:
     first_code = next((i for i, c in enumerate(nb.cells) if c.cell_type == "code"), len(nb.cells))
     nb.cells.insert(first_code, setup)
     nb.cells.insert(1, badge)
-    for i, c in enumerate(nb.cells):  # stable, unique ids
-        c["id"] = c.get("id") or f"{path.name[:2]}-{i:03d}"
+    badge["id"], setup["id"] = "colab-badge", "colab-setup"  # fixed ids: re-running changes nothing
     nbformat.validate(nb)
     nbformat.write(nb, path)
     print("updated", path.name)

@@ -63,6 +63,7 @@ nav:
       - 03 · Association: notebooks/03_association.ipynb
       - 04 · Validation: notebooks/04_catalogue_comparison.ipynb
       - 05 · Seismicity analysis: notebooks/05_seismicity_analysis.ipynb
+      - 06 · Quick start (1–2 h): notebooks/06_quickstart_catalogue.ipynb
   - References: references.md
   - Editing guide: editing.md
 
